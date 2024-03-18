@@ -48,7 +48,7 @@ const Register = () => {
                         )}
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "PPP") : <span>Pick a date</span>}
+                        {date ? format(date, "PP") : <span>Tanggal Lahir</span>}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-full p-0">
