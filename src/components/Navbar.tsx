@@ -5,12 +5,16 @@ import {
     AvatarFallback,
     AvatarImage,
   } from "@/components/ui/avatar"
+import Logo from "@/assets/logo-pesbuk.png"
+
+
+
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 z-50 w-full bg-[#7289DA]/95 backdrop-blur supports-[backdrop-filter]:bg-[#7289DA]/60 px-5">
-      <nav className="container flex h-14 max-w-screen-2xl items-center justify-between">
-        <Link to="/" className="text-2xl">🅿</Link>
+    <div className="sticky top-0 z-50 w-full bg-[#306BC7] backdrop-blur supports-[backdrop-filter]:bg-[#306BC7] px-5">
+      <nav className="container flex min-h-14 max-w-screen-2xl items-center justify-between">
+        <Link to="/" className="text-2xl"><img src={Logo} alt="" className="h-12"/></Link>
         <a href="">
             <DropdownMenu>
                 <DropdownMenuTrigger>
