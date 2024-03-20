@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import Logo from "@/assets/logo-pesbuk.png"
+import { Link } from "react-router-dom"
 // import { Label } from "@/components/ui/label"
 
 const Login = () => {
@@ -26,6 +27,9 @@ const Login = () => {
                 </div>
                 <div className="text-center mt-3">
                   <Button className="mt-3" type="submit">Login</Button>
+                </div>
+                <div className="text-center mt-3">
+                  <p>Don't have account yet? <Link to="/register" className="hover:text-[#306BC7] duration-500">Register</Link></p>
                 </div>
               </form>
             </CardDescription>

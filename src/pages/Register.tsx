@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/popover"
 import Logo from "@/assets/logo-pesbuk.png"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 
 const Register = () => {
@@ -71,6 +72,9 @@ const Register = () => {
                 </div>
                 <div className="text-center mt-3">
                   <Button className="mt-3" type="submit">Register</Button>
+                </div>
+                <div className="text-center mt-3">
+                  <p>Already have an account? <Link to="/login" className="hover:text-[#306BC7] duration-500">Login</Link></p>
                 </div>
               </form>
             </CardDescription>
