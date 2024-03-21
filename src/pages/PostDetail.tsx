@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import Pattern from "@/assets/pattern.png"
+
 
 const PostDetail = () => {
   const params = useParams()
   return (
-    <div>
+    <div style={{backgroundImage: `url(${Pattern})`}}>
       <Navbar />
       <div className="p-5 w-2/4 h-full flex flex-col mx-auto gap-10">
         <Card>

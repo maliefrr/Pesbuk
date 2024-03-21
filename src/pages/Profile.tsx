@@ -14,14 +14,15 @@ import {
 import { useState } from "react"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { toast } from "sonner"
+import Pattern from "@/assets/pattern.png"
 
 
 const Profile = () => {
   const [date,setDate] = useState<Date>()
   return (
-    <div>
+    <div style={{backgroundImage: `url(${Pattern})`}} className="h-screen">
       <Navbar />
-      <div className="p-10 flex justify-center items-center font-inter">
+      <div className={`p-10 flex justify-center items-center font-inter`}>
         <Card className="p-8 w-[70%] shadow-lg backdrop-blur-xl bg-white border-none lg:w-[70%] md:w-[70%]">
           <CardContent className="flex w-full">
             <div className="flex flex-col justify-center items-center gap-3">
