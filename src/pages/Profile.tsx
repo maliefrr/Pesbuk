@@ -33,28 +33,30 @@ const Profile = () => {
                 <Input placeholder="Email" className="mb-4"/>
                 <Input placeholder="Tempat Lahir" className="mb-4"/>
                 <div className="mb-3">
-                  <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-full justify-between flex-row-reverse text-left font-normal",
-                            !date && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {date ? format(date, "PP") : <span>Tanggal Lahir</span>}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-full p-0">
-                        <Calendar
-                          mode="single"
-                          selected={date}
-                          onSelect={setDate}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
+                <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full justify-between flex-row-reverse text-left font-normal",
+                          !date && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {date ? format(date, "PP") : <span>Date of Birth</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                      <Calendar
+                        captionLayout="dropdown-buttons"
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        fromYear={1940}
+                        toYear={2030}
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
                 <Input placeholder="Password" className="mb-4"/>
                 <div className="grid grid-cols-2 mt-4 gap-3">

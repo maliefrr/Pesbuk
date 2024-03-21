@@ -38,9 +38,6 @@ const Register = () => {
                   <Input placeholder="Email" id="email"/>
                 </div>
                 <div className="mb-3">
-                  <Input placeholder="Tempat Lahir" id="tempatLahir"/>
-                </div>
-                <div className="mb-3">
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
@@ -51,15 +48,17 @@ const Register = () => {
                         )}
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "PP") : <span>Tanggal Lahir</span>}
+                        {date ? format(date, "PP") : <span>Date of Birth</span>}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-full p-0">
+                    <PopoverContent>
                       <Calendar
+                        captionLayout="dropdown-buttons"
                         mode="single"
                         selected={date}
                         onSelect={setDate}
-                        initialFocus
+                        fromYear={1940}
+                        toYear={2030}
                       />
                     </PopoverContent>
                   </Popover>
