@@ -26,7 +26,7 @@ const Profile = () => {
           <CardContent className="flex w-full">
             <div className="flex flex-col justify-center items-center gap-3">
               <img src="https://github.com/shadcn.png" alt="" className="w-2/5 rounded-full"/>
-              <Button className="w-1/3">Edit</Button>
+              <Button className="w-1/3 bg-[#306BC7] hover:bg-[#3360aa] duration-500">Edit</Button>
             </div>
             <div className="w-1/2">
                 <Input placeholder="Nama" className="mb-4"/>
@@ -60,7 +60,7 @@ const Profile = () => {
                 <div className="grid grid-cols-2 mt-4 gap-3">
                   <AlertDialog>
                     <AlertDialogTrigger>
-                      <Button variant="outline" className="border-red-500 hover:bg-red-600 hover:text-white duration-500 w-full">Delete Account</Button>
+                      <Button variant="outline" className="border-[#306BC7] hover:bg-[#3360aa] hover:text-white duration-500 w-full">Delete Account</Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>

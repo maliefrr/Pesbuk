@@ -71,7 +71,7 @@ const Register = () => {
                   <Input placeholder="Password Confirmation" id="passwordConfirmation" type="password"/>
                 </div>
                 <div className="text-center mt-3">
-                  <Button className="mt-3" type="submit">Register</Button>
+                  <Button className="mt-3 bg-[#306BC7] hover:bg-[#3360aa] duration-500" type="submit">Register</Button>
                 </div>
                 <div className="text-center mt-3">
                   <p>Already have an account? <Link to="/login" className="hover:text-[#306BC7] duration-500">Login</Link></p>

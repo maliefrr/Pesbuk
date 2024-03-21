@@ -26,7 +26,7 @@ const Login = () => {
                   <Input placeholder="Password" id="password" type="password"/>
                 </div>
                 <div className="text-center mt-3">
-                  <Button className="mt-3" type="submit">Login</Button>
+                  <Button className="mt-3 bg-[#306BC7] hover:bg-[#3360aa] duration-500" type="submit">Login</Button>
                 </div>
                 <div className="text-center mt-3">
                   <p>Don't have account yet? <Link to="/register" className="hover:text-[#306BC7] duration-500">Register</Link></p>
