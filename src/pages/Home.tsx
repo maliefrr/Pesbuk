@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import Pattern from "@/assets/pattern.png"
 
 const Home = () => {
   return (
-    <div>
+    <div style={{backgroundImage: `url(${Pattern})`}}>
       <Navbar />
       <div className="p-5 w-2/4 h-full flex flex-col mx-auto gap-10">
         <Card>
