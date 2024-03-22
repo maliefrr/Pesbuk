@@ -54,7 +54,6 @@ const Profile = () => {
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
                         {...field}
-                        readOnly={!isEdit}
                         />
                     )}
                   </CustomFormField>
@@ -69,7 +68,6 @@ const Profile = () => {
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
                         {...field}
-                        readOnly={!isEdit}
                         />
                         )}
                   </CustomFormField>
@@ -79,7 +77,6 @@ const Profile = () => {
                   <CustomFormField
                     control={form.control}
                     name="password"
-                    readOnly={!isEdit}
                     >
                     {(field) => (
                       <Input 
@@ -88,7 +85,6 @@ const Profile = () => {
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
                         {...field}
-                        readOnly={!isEdit}
                         />
                     )}
                   </CustomFormField>

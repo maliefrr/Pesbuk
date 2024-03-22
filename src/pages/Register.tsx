@@ -58,7 +58,6 @@ const Register = () => {
                           placeholder="Full Name"
                           disabled={form.formState.isSubmitting}
                           aria-disabled={form.formState.isSubmitting}
-                          value={(field.value as string)}
                           {...field}
                           />
                       )}
@@ -74,7 +73,6 @@ const Register = () => {
                           placeholder="Email"
                           disabled={form.formState.isSubmitting}
                           aria-disabled={form.formState.isSubmitting}
-                          value={(field.value as string)}
                           {...field}
                         />
                       )}
@@ -94,7 +92,6 @@ const Register = () => {
                           type="password" 
                           disabled={form.formState.isSubmitting}
                           aria-disabled={form.formState.isSubmitting}
-                          value={(field.value as string)}
                           {...field}
                         />
                       )}
@@ -112,7 +109,6 @@ const Register = () => {
                           disabled={form.formState.isSubmitting} 
                           aria-disabled={form.formState.isSubmitting}
                           {...field}
-                          value={(field.value as string)}
                           />
                       )}
                     </CustomFormField>
