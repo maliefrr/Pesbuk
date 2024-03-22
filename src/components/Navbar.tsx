@@ -27,7 +27,6 @@ const Navbar = () => {
       setAvatar(response.data.avatar)
       localStorage.setItem("userData", JSON.stringify(response.data));
       toast(response.message)
-      console.log(response)
     } catch (error) {
       toast((error as Error).message)
     }

@@ -13,6 +13,7 @@ import { Form } from "@/components/ui/form"
 import Pattern from "@/assets/pattern.png"
 
 import { Post, getPosts, addPost, PostSchema, postSchema } from "@/utils/apis/post";
+import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
 
 const Home = () => {
 
@@ -51,7 +52,9 @@ const Home = () => {
 
   const post = async (body: PostSchema) => {
     try {
+      setAxiosConfig(localStorage.getItem("token"))
       const response = await addPost(body)
+      console.log(response)
       toast(response.message)
     } catch (error) {
       toast((error as Error).message)
