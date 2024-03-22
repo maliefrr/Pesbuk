@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import Navbar from "@/components/Navbar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
@@ -11,7 +10,6 @@ import { PlusIcon, Image } from "lucide-react"
 import { toast } from "sonner"
 import { Form } from "@/components/ui/form"
 import Pattern from "@/assets/pattern.png"
-
 import { Post, getPosts, addPost, PostSchema, postSchema } from "@/utils/apis/post";
 import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
 
