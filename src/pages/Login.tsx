@@ -27,6 +27,7 @@ const Login = () => {
       const response = await loginUser(body)
       toast(response.message)
       navigate("/")
+      localStorage.setItem("token",response.data.token)
     } catch (error) {
       toast((error as Error).message)
     }
