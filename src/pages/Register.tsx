@@ -1,23 +1,39 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
 import Logo from "@/assets/logo-pesbuk.png"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { registerUser } from "@/utils/apis/auth/api"
+import {toast} from "sonner"
+import {zodResolver} from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { RegisterSchema, registerSchema } from "@/utils/apis/auth/type"
+import { Form } from "@/components/ui/form"
+import { CustomFormDatePicker, CustomFormField } from "@/components/customFormField"
 
 
 const Register = () => {
-  const [date,setDate] = useState<Date>()
+  const navigate = useNavigate()
+  const form = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      fullname: "",
+      email: "",
+      birthday: new Date(),
+      password: "",
+      passwordConfirmation: ""
+    }
+  })
+
+  const register = async (body: RegisterSchema) => {
+    try {
+      const response = await registerUser(body)
+      toast(response.message)
+      navigate("/login")
+    } catch (error) {
+      toast((error as Error).message)
+    }
+  }
   return (
     <div className="bg-[#306BC7] font-inter">
       <div className="flex items-center justify-center h-screen">
@@ -30,52 +46,85 @@ const Register = () => {
               </div>
             </CardHeader>
             <CardDescription>
-              <form action="">
-                <div className="mb-3">
-                  <Input placeholder="Full Name" id="fullName"/>
-                </div>
-                <div className="mb-3">
-                  <Input placeholder="Email" id="email"/>
-                </div>
-                <div className="mb-3">
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant={"outline"}
-                        className={cn(
-                          "w-full justify-between flex-row-reverse text-left font-normal",
-                          !date && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "PP") : <span>Date of Birth</span>}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent>
-                      <Calendar
-                        captionLayout="dropdown-buttons"
-                        mode="single"
-                        selected={date}
-                        onSelect={setDate}
-                        fromYear={1940}
-                        toYear={2030}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-                <div className="mb-3">
-                  <Input placeholder="Password" id="password" type="password"/>
-                </div>
-                <div className="mb-3">
-                  <Input placeholder="Password Confirmation" id="passwordConfirmation" type="password"/>
-                </div>
-                <div className="text-center mt-3">
-                  <Button className="mt-3 bg-[#306BC7] hover:bg-[#3360aa] duration-500" type="submit">Register</Button>
-                </div>
-                <div className="text-center mt-3">
-                  <p>Already have an account? <Link to="/login" className="hover:text-[#306BC7] duration-500">Login</Link></p>
-                </div>
-              </form>
+              <Form {...form}>
+                <form action="" onSubmit={form.handleSubmit(register)}>
+                  <div className="mb-3">
+                    <CustomFormField
+                      control={form.control}
+                      name="fullname"
+                    >
+                      {(field) => (
+                        <Input 
+                          placeholder="Full Name"
+                          disabled={form.formState.isSubmitting}
+                          aria-disabled={form.formState.isSubmitting}
+                          value={(field.value as string)}
+                          {...field}
+                          />
+                      )}
+                    </CustomFormField>
+                  </div>
+                  <div className="mb-3">
+                    <CustomFormField
+                      control={form.control}
+                      name="email"
+                    >
+                      {(field) => (
+                        <Input 
+                          placeholder="Email"
+                          disabled={form.formState.isSubmitting}
+                          aria-disabled={form.formState.isSubmitting}
+                          value={(field.value as string)}
+                          {...field}
+                        />
+                      )}
+                    </CustomFormField>
+                  </div>
+                  <div className="mb-3">
+                      <CustomFormDatePicker control={form.control} name="birthday" placeholder="Date of Birth"/>
+                  </div>
+                  <div className="mb-3">
+                    <CustomFormField
+                      control={form.control}
+                      name="password"
+                    >
+                      {(field) => (
+                        <Input 
+                          placeholder="Password" 
+                          type="password" 
+                          disabled={form.formState.isSubmitting}
+                          aria-disabled={form.formState.isSubmitting}
+                          value={(field.value as string)}
+                          {...field}
+                        />
+                      )}
+                    </CustomFormField>
+                  </div>
+                  <div className="mb-3">
+                    <CustomFormField 
+                      control={form.control}
+                      name="passwordConfirmation"
+                    >
+                      {(field) => (
+                        <Input 
+                          placeholder="Password Confirmation" 
+                          type="password" 
+                          disabled={form.formState.isSubmitting} 
+                          aria-disabled={form.formState.isSubmitting}
+                          {...field}
+                          value={(field.value as string)}
+                          />
+                      )}
+                    </CustomFormField>
+                  </div>
+                  <div className="text-center mt-3">
+                    <Button className="mt-3 bg-[#306BC7] hover:bg-[#3360aa] duration-500" type="submit">Register</Button>
+                  </div>
+                  <div className="text-center mt-3">
+                    <p>Already have an account? <Link to="/login" className="hover:text-[#306BC7] duration-500">Login</Link></p>
+                  </div>
+                </form>
+              </Form>
             </CardDescription>
           </CardContent>
         </Card>
