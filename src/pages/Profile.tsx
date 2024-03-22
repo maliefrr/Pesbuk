@@ -53,7 +53,6 @@ const Profile = () => {
                         className="mb-4"
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
-                        value={(field.value as string)}
                         {...field}
                         readOnly={!isEdit}
                         />
@@ -69,7 +68,6 @@ const Profile = () => {
                         className="mb-4"
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
-                        value={(field.value as string)}
                         {...field}
                         readOnly={!isEdit}
                         />
@@ -89,7 +87,6 @@ const Profile = () => {
                         className="mb-4"
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
-                        value={(field.value as string)}
                         {...field}
                         readOnly={!isEdit}
                         />
