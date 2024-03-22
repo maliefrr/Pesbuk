@@ -15,9 +15,22 @@ import { useState } from "react"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { toast } from "sonner"
 import Pattern from "@/assets/pattern.png"
+import { useForm } from "react-hook-form"
+import {zodResolver} from "@hookform/resolvers/zod"
+import { EditUserSchema, editUserSchema } from "@/utils/apis/users/type"
 
 
 const Profile = () => {
+  const form = useForm<EditUserSchema>({
+    resolver: zodResolver(editUserSchema),
+    defaultValues: {
+      fullname: "",
+      email: "",
+      birthday: new Date(),
+      avatar: "",
+      password: ""
+    }
+  })
   const [date,setDate] = useState<Date>()
   return (
     <div style={{backgroundImage: `url(${Pattern})`}} className="h-screen">
