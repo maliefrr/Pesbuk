@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
+
 import Navbar from "@/components/Navbar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
@@ -10,8 +12,11 @@ import { PlusIcon, Image } from "lucide-react"
 import { toast } from "sonner"
 import { Form } from "@/components/ui/form"
 import Pattern from "@/assets/pattern.png"
+
 import { Post, getPosts, addPost, PostSchema, postSchema } from "@/utils/apis/post";
-import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
+
+import { format } from 'date-fns'
+
 
 const Home = () => {
 
@@ -49,10 +54,12 @@ const Home = () => {
   }
 
   const post = async (body: PostSchema) => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      setAxiosConfig(token)
+    }
     try {
-      setAxiosConfig(localStorage.getItem("token")!)
       const response = await addPost(body)
-      console.log(response)
       toast(response.message)
     } catch (error) {
       toast((error as Error).message)
@@ -71,20 +78,21 @@ const Home = () => {
                   <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" alt="pesbuk" />
                   </Avatar>
-                  User2
+                  { post.fullname }
+                  <p className="font-thin text-xs text-slate-600">Posted on { format(post.created_at, 'd MMMM yyyy') }</p>
                 </div>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="mb-2">{ post.content }</p>
-              <img className="object-contain h-100 w-full" src="https://picsum.photos/300/150" alt="pesbuk" />
+              { post.picture ? <img className="object-contain h-100 w-full" src={ post.picture } alt="pesbuk" /> : '' }
             </CardContent>
           </Card>
         ))}
       </div>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogTrigger>
-          <Button className="bg-[#306BC7] hover:bg-[#3360aa] duration-500 rounded-full p-2 fixed bottom-5 right-5 mr-8 shadow-lg"><PlusIcon></PlusIcon></Button>
+          <Button className="bg-[#3360aa] hover:bg-[#3360aa] duration-500 rounded-full p-2 fixed bottom-5 right-5 mr-8 shadow-lg"><PlusIcon></PlusIcon></Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -121,7 +129,7 @@ const Home = () => {
                       onChange={(e) => e.target.files ? e.target.files[0] : null
                     } />
                     <div className="text-end mt-3">
-                      <Button className="mt-3 bg-[#306BC7] hover:bg-[#3360aa] duration-500 px-8" type="submit">Post</Button>
+                      <Button className="mt-3 bg-blue-600 hover:bg-[#3360aa] duration-500 px-8" type="submit">Post</Button>
                     </div>
                   </form>
                 </Form>
