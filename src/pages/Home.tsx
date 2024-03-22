@@ -50,7 +50,7 @@ const Home = () => {
 
   const post = async (body: PostSchema) => {
     try {
-      setAxiosConfig(localStorage.getItem("token"))
+      setAxiosConfig(localStorage.getItem("token")!)
       const response = await addPost(body)
       console.log(response)
       toast(response.message)
