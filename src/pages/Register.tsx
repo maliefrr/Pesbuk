@@ -58,7 +58,9 @@ const Register = () => {
                           placeholder="Full Name"
                           disabled={form.formState.isSubmitting}
                           aria-disabled={form.formState.isSubmitting}
-                          {...field}
+                          value={field.value ? field.value.toString() : ""}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
                           />
                       )}
                     </CustomFormField>
@@ -73,7 +75,9 @@ const Register = () => {
                           placeholder="Email"
                           disabled={form.formState.isSubmitting}
                           aria-disabled={form.formState.isSubmitting}
-                          {...field}
+                          value={field.value ? field.value.toString() : ""}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
                         />
                       )}
                     </CustomFormField>
@@ -92,7 +96,9 @@ const Register = () => {
                           type="password" 
                           disabled={form.formState.isSubmitting}
                           aria-disabled={form.formState.isSubmitting}
-                          {...field}
+                          value={field.value ? field.value.toString() : ""}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
                         />
                       )}
                     </CustomFormField>
@@ -106,9 +112,11 @@ const Register = () => {
                         <Input 
                           placeholder="Password Confirmation" 
                           type="password" 
-                          disabled={form.formState.isSubmitting} 
+                          disabled={form.formState.isSubmitting}
                           aria-disabled={form.formState.isSubmitting}
-                          {...field}
+                          value={field.value ? field.value.toString() : ""}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
                           />
                       )}
                     </CustomFormField>

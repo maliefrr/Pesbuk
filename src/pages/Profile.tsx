@@ -43,20 +43,23 @@ const Profile = () => {
             <div className="w-1/2">
               <Form {...form}>
                 <form action="">
-                  <CustomFormField
-                    control={form.control}
-                    name="fullname"
-                  >
-                    {(field) => (
-                      <Input 
-                        placeholder="Full Name" 
-                        className="mb-4"
-                        disabled={form.formState.isSubmitting}
-                        aria-disabled={form.formState.isSubmitting}
-                        {...field}
-                        />
-                    )}
-                  </CustomFormField>
+                <CustomFormField
+                  control={form.control}
+                  name="fullname"
+                >
+                  {(field) => (
+                    <Input 
+                      placeholder="Full Name" 
+                      className="mb-4"
+                      disabled={form.formState.isSubmitting}
+                      aria-disabled={form.formState.isSubmitting}
+                      value={field.value ? field.value.toString() : ""}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                    />
+                  )}
+                </CustomFormField>
+
                   <CustomFormField
                     control={form.control}
                     name="email"
@@ -67,12 +70,18 @@ const Profile = () => {
                         className="mb-4"
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
-                        {...field}
+                        value={field.value ? field.value.toString() : ""}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
                         />
                         )}
                   </CustomFormField>
                   <div className="mb-3">
-                  <CustomFormDatePicker control={form.control} name="birthday" placeholder="Date of Birth"/>
+                  <CustomFormDatePicker
+                    control={form.control}
+                    name="birthday"
+                    placeholder="Date of Birth"
+                  />
                   </div>
                   <CustomFormField
                     control={form.control}
@@ -84,7 +93,9 @@ const Profile = () => {
                         className="mb-4"
                         disabled={form.formState.isSubmitting}
                         aria-disabled={form.formState.isSubmitting}
-                        {...field}
+                        value={field.value ? field.value.toString() : ""}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
                         />
                     )}
                   </CustomFormField>
