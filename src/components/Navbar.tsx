@@ -26,6 +26,7 @@ const Navbar = () => {
 
       setAvatar(response.data.avatar)
       toast(response.message)
+      console.log(response)
     } catch (error) {
       toast((error as Error).message)
     }

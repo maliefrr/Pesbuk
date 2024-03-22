@@ -47,7 +47,7 @@ const Home = () => {
       </div>
       <AlertDialog>
         <AlertDialogTrigger className="">
-          <Button className="bg-[#3360aa] rounded-full p-2 fixed bottom-5 right-5 mr-8 shadow-lg"><PlusIcon></PlusIcon></Button>
+          <Button className="bg-[#306BC7] hover:bg-[#3360aa] duration-500 rounded-full p-2 fixed bottom-5 right-5 mr-8 shadow-lg"><PlusIcon></PlusIcon></Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -73,7 +73,7 @@ const Home = () => {
                   </label>
                   <input id="upload" type="file" className="hidden" />
                   <div className="text-end mt-3">
-                    <Button className="mt-3 bg-blue-600 px-8" type="submit">Post</Button>
+                    <Button className="mt-3 bg-[#306BC7] hover:bg-[#3360aa] duration-500 px-8" type="submit">Post</Button>
                   </div>
                 </form>
               </div>
