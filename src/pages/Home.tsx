@@ -8,9 +8,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea";
+import { CustomFormField } from "@/components/customFormField"
 import { PlusIcon, Image } from "lucide-react"
 import { toast } from "sonner"
-import { Form } from "@/components/ui/form"
 import Pattern from "@/assets/pattern.png"
 
 import { Post, getPosts, addPost, PostSchema, postSchema } from "@/utils/apis/post";
@@ -42,7 +45,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchNewPosts();
-  }, []);
+  }, [form.formState]);
 
   async function fetchNewPosts() {
     try {
@@ -110,24 +113,47 @@ const Home = () => {
                   <form onSubmit={form.handleSubmit(post)}>
                     <div className="mb-3">
                       <div className="relative w-full min-w-[200px]">
-                        <textarea name="content" placeholder="What's happening?"
-                          className="peer h-full min-h-[100px] w-full resize-none border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50" cols={200} rows={5}></textarea>
+                        <CustomFormField
+                          control={form.control}
+                          name="content"
+                        >
+                          {(field) => (
+                            <Textarea
+                              {...field}
+                              className="peer h-full min-h-[100px] w-full resize-none border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50" cols={200} rows={5}
+                              placeholder="What's happening?..."
+                              disabled={form.formState.isSubmitting}
+                              aria-disabled={form.formState.isSubmitting}
+                              value={field.value as string}
+                            />
+                          )}
+                        </CustomFormField>
+                        {/* <textarea name="content" placeholder="What's happening?"
+                          className="peer h-full min-h-[100px] w-full resize-none border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50" cols={200} rows={5}></textarea> */}
                       </div>
                     </div>
                     <label htmlFor="upload" className="flex flex-col gap-2 cursor-pointer">
                       <Image></Image>
                     </label>
-                    <input 
-                      id="upload" 
-                      type="file"
+                    <CustomFormField
+                      control={form.control}
                       name="picture"
-                      className="hidden" 
-                      accept="image/png, image/jpeg, image/jpg"
-                      multiple={false}
-                      disabled={form.formState.isSubmitting}
-                      aria-disabled={form.formState.isSubmitting}
-                      onChange={(e) => e.target.files ? e.target.files[0] : null
-                    } />
+                    >
+                      {(field) => (
+                        <Input
+                          id = "upload"
+                          className="hidden"
+                          type="file"
+                          accept="image/png, image/jpeg, image/jpg"
+                          multiple={false}
+                          disabled={form.formState.isSubmitting}
+                          aria-disabled={form.formState.isSubmitting}
+                          onChange={(e) =>
+                            field.onChange(e.target.files ? e.target.files[0] : null)
+                          }
+                        />
+                      )}
+                    </CustomFormField>
                     <div className="text-end mt-3">
                       <Button className="mt-3 bg-blue-600 hover:bg-[#3360aa] duration-500 px-8" type="submit">Post</Button>
                     </div>

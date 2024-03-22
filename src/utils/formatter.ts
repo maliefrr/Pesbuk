@@ -19,5 +19,9 @@ export const checkProperty = (property: any) => {
 };
   
 export const valueFormatData = (value: any) => {
+    if (value instanceof File) {
+        return value as Blob;
+    }
+    
     return String(value);
 };
