@@ -25,6 +25,7 @@ const Navbar = () => {
       const response = await getUser()
 
       setAvatar(response.data.avatar)
+      localStorage.setItem("userData", JSON.stringify(response.data));
       toast(response.message)
       console.log(response)
     } catch (error) {
@@ -56,7 +57,7 @@ const Navbar = () => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <span className="text-sm flex items-center gap-3 text-red-600 cursor-pointer" onClick={() => {
-                  localStorage.removeItem("token")
+                  localStorage.clear()
                   toast("Successfully Logout")
                   navigate("/")
                 }}><LogOut /> Logout</span>

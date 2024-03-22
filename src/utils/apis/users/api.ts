@@ -35,3 +35,13 @@ export const editUser = async (body: EditUserSchema) => {
         throw Error(error.response.data.message);
       }
 }
+
+export const deleteUser = async () => {
+  try {
+    const response = await axiosWithConfig.delete("/users")
+
+    return response.data as IResponse
+  } catch (error : any) {
+    throw Error(error.response.data.message)
+  }
+}
