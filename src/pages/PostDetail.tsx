@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar"
-import { useParams } from "react-router-dom"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -7,7 +6,6 @@ import Pattern from "@/assets/pattern.png"
 
 
 const PostDetail = () => {
-  const params = useParams()
   return (
     <div style={{backgroundImage: `url(${Pattern})`}}>
       <Navbar />
