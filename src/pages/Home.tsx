@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
 
 import Navbar from "@/components/Navbar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,6 +14,9 @@ import { Form } from "@/components/ui/form"
 import Pattern from "@/assets/pattern.png"
 
 import { Post, getPosts, addPost, PostSchema, postSchema } from "@/utils/apis/post";
+
+import { format } from 'date-fns'
+
 
 const Home = () => {
 
@@ -50,6 +54,10 @@ const Home = () => {
   }
 
   const post = async (body: PostSchema) => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      setAxiosConfig(token)
+    }
     try {
       const response = await addPost(body)
       toast(response.message)
@@ -70,13 +78,14 @@ const Home = () => {
                   <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" alt="pesbuk" />
                   </Avatar>
-                  User2
+                  { post.fullname }
+                  <p className="font-thin text-xs text-slate-600">Posted on { format(post.created_at, 'd MMMM yyyy') }</p>
                 </div>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="mb-2">{ post.content }</p>
-              <img className="object-contain h-100 w-full" src="https://picsum.photos/300/150" alt="pesbuk" />
+              { post.picture ? <img className="object-contain h-100 w-full" src={ post.picture } alt="pesbuk" /> : '' }
             </CardContent>
           </Card>
         ))}
