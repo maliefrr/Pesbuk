@@ -54,7 +54,7 @@ const Home = () => {
   }
 
   const post = async (body: PostSchema) => {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
       setAxiosConfig(token)
     }
